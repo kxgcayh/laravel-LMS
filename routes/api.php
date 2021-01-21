@@ -2,6 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\ClassController;
+use App\Http\Controllers\API\CalendarController;
+use App\Http\Controllers\API\TaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +18,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('login', [AuthController::class, 'login']);
+Route::post('register', [AuthController::class, 'register']);
+
+Route::group(['middleware' => ['auth:api'], 'as' => 'api.'], function () {
+    Route::resource('calendars', CalendarController::class);
+    Route::resource('tasks', TaskController::class);
+    Route::resource('classes', ClassController::class);
 });

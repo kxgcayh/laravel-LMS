@@ -44,7 +44,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('any', 'calendar') }}">
+                    <a href="{{ route('calendars') }}">
                         <i data-feather="calendar"></i>
                         <span> Calendar </span>
                     </a>
@@ -52,9 +52,9 @@
                 <hr>
                 <li class="menu-title">Enrolled</li>
                 <li>
-                    <a href="{{ route('any', 'todo') }}">
+                    <a href="{{ route('tasks') }}">
                         <i class="mdi mdi-clipboard-check-outline"></i>
-                        <span> Todo </span>
+                        <span> Tasks </span>
                     </a>
                 </li>
                 <li>

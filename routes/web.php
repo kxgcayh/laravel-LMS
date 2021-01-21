@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\RoutingController;
+use App\Http\Controllers\PagesController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,11 +22,9 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
-Route::group(['middleware' => ['auth'], 'prefix' => '/'], function () {
-    Route::get('{any}', [RoutingController::class, 'root'])->name('any');
-    Route::get('{first}/{second}', [RoutingController::class, 'secondLevel'])->name('second');
-    Route::get('{first}/{second}/{third}', [RoutingController::class, 'thirdLevel'])->name('third');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/calendars', [PagesController::class, 'calendars'])->name('calendars');
+    Route::get('/tasks', [PagesController::class, 'tasks'])->name('tasks');
+    Route::get('/classes', [PagesController::class, 'classes'])->name('classes');
 });
-
-Route::get('/home', [HomeController::class, 'index'])->name('home');
