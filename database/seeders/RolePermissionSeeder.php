@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Role;
 use App\Models\Permission;
+use Spatie\Permission\PermissionRegistrar;
 
 class RolePermissionSeeder extends Seeder
 {
@@ -15,9 +16,12 @@ class RolePermissionSeeder extends Seeder
      */
     public function run()
     {
+        // Reset cached roles and permissions
+        app()[PermissionRegistrar::class]->forgetCachedPermissions();
+
         $roles = [
             [
-                'name' => 'admin'
+                'name' => 'super-admin'
             ],
             [
                 'name' => 'teacher'
@@ -33,21 +37,32 @@ class RolePermissionSeeder extends Seeder
 
         $permissions = [
             [
-                'name' => 'create'
+                'name' => 'create class'
             ],
             [
-                'name' => 'read'
+                'name' => 'create task'
             ],
             [
-                'name' => 'update'
+                'name' => 'update task'
             ],
             [
-                'name' => 'delete'
+                'name' => 'delete task'
+            ],
+            [
+                'name' => 'submit task'
             ]
         ];
 
         foreach ($permissions as $permission) {
             Permission::create($permission);
         }
+
+        $teacher = Role::find(2);
+        $teacher->givePermissionTo([
+            'create class', 'create task', 'update task', 'delete task'
+        ]);
+
+        $student = Role::find(3);
+        $student->givePermissionTo('submit task');
     }
 }
