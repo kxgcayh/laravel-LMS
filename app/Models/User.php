@@ -47,4 +47,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Task::class);
     }
+
+    public function instructorClass()
+    {
+        return $this->hasMany(Classes::class);
+    }
+
+    public function studentClass()
+    {
+        return $this->belongsToMany(Classes::class, 'user_has_classes', 'user_id', 'class_id');
+    }
 }
