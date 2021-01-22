@@ -18,10 +18,11 @@ use App\Http\Controllers\API\TaskController;
 |
 */
 
+// Authentication
+Route::post('login', [AuthController::class, 'login'])->name('login');
+Route::post('register', [AuthController::class, 'register'])->name('register');
+
 Route::group(['middleware' => ['auth:api'], 'as' => 'api.'], function () {
-    // Authentication
-    Route::post('login', [AuthController::class, 'login'])->name('login');
-    Route::post('register', [AuthController::class, 'register'])->name('register');
     // Proccess
     Route::resource('calendars', CalendarController::class)->except('create');
     Route::resource('tasks', TaskController::class)->except('create');

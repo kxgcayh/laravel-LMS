@@ -4,6 +4,9 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Task;
+use Exception;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
@@ -14,7 +17,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = auth()->user()->tasks;
+        $tasks = Task::with('created_by')->get();
 
         return response()->json([
             'success' => true,
@@ -31,8 +34,29 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            //
+            'name' => 'required',
+            'description' => 'required',
+            'datetime' => 'required',
         ]);
+
+        $task = new Task();
+        $task->name = $request->name;
+        $task->description = $request->description;
+        $task->datetime = $request->datetime;
+        $task->created_by = Auth::id();
+
+        try {
+            $task->save();
+            return response()->json([
+                'success' => true,
+                'data' => $task->toArray()
+            ], 200);
+        } catch (Exception $ex) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Task not submited'
+            ], 500);
+        }
     }
 
     /**
@@ -77,6 +101,22 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $task = Task::find($id);
+        if (!$task) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Task not found'
+            ], 400);
+        } elseif ($task->delete()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Task deleted successfull'
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Task can not be deleted'
+            ], 500);
+        }
     }
 }

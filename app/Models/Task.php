@@ -13,9 +13,9 @@ class Task extends Model
         'name', 'description', 'datetime', 'created_by'
     ];
 
-    public function user()
+    public function created_by()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'created_by');
     }
 
     protected $casts = [
