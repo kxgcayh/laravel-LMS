@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\API;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Task;
 use Exception;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
@@ -17,18 +18,24 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::with('created_by')->get();
+        if (request()->ajax()) {
+            $start = (!empty($_GET['start_date'])) ? ($_GET['start_date']) : ('');
+            $end = (!empty($_GET['end_date'])) ? ($_GET('end_date')) : ('');
 
-        return response()->json([
-            'success' => true,
-            'data' => $tasks
-        ]);
+            $data = Task::whereDate('start_date', '>=', $start)
+                ->whereDate('end_date', '<=', $end)
+                ->get(['id', 'name', 'description', 'start_date', 'end_date'])
+            ;
+
+            return response()->json($data);
+        }
+
+        // return view('contents.calendar.index');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -47,14 +54,15 @@ class TaskController extends Controller
 
         try {
             $task->save();
+
             return response()->json([
                 'success' => true,
-                'data' => $task->toArray()
+                'data' => $task->toArray(),
             ], 200);
         } catch (Exception $ex) {
             return response()->json([
                 'success' => false,
-                'message' => 'Task not submited'
+                'message' => 'Task not submited',
             ], 500);
         }
     }
@@ -62,41 +70,41 @@ class TaskController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -105,18 +113,19 @@ class TaskController extends Controller
         if (!$task) {
             return response()->json([
                 'success' => false,
-                'message' => 'Task not found'
+                'message' => 'Task not found',
             ], 400);
-        } elseif ($task->delete()) {
+        }
+        if ($task->delete()) {
             return response()->json([
                 'success' => true,
-                'message' => 'Task deleted successfull'
+                'message' => 'Task deleted successfull',
             ], 200);
-        } else {
-            return response()->json([
-                'success' => false,
-                'message' => 'Task can not be deleted'
-            ], 500);
         }
+
+        return response()->json([
+            'success' => false,
+            'message' => 'Task can not be deleted',
+        ], 500);
     }
 }

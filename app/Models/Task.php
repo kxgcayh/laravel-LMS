@@ -10,15 +10,19 @@ class Task extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'description', 'datetime', 'created_by'
+        'name',
+        'description',
+        'start_date',
+        'end_date',
+        'created_by',
+    ];
+
+    protected $casts = [
+        'datetime' => 'date:Y-m-d H:i:s',
     ];
 
     public function created_by()
     {
         return $this->belongsTo(User::class, 'created_by');
     }
-
-    protected $casts = [
-        'datetime'  => 'date:Y-m-d H:i:s',
-    ];
 }
