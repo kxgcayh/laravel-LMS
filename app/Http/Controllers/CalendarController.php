@@ -16,12 +16,12 @@ class CalendarController extends Controller
     {
         $tasks = Task::all();
         if (request()->ajax()) {
-            $start = (!empty($_GET['start_date'])) ? ($_GET['start_date']) : ('');
-            $end = (!empty($_GET['end_date'])) ? ($_GET('end_date')) : ('');
+            $start = (!empty($_GET['start'])) ? ($_GET['start']) : ('');
+            $end = (!empty($_GET['end'])) ? ($_GET('end')) : ('');
 
-            $data = Task::whereDate('start_date', '>=', $start)
-                ->whereDate('end_date', '<=', $end)
-                ->get(['id', 'name', 'description', 'start_date', 'end_date'])
+            $data = Task::whereDate('start', '>=', $start)
+                ->whereDate('end', '<=', $end)
+                ->get(['id', 'name', 'start', 'end'])
             ;
 
             return response()->json($data);
@@ -39,8 +39,8 @@ class CalendarController extends Controller
     {
         $insertArray = [
             'name' => $request->name,
-            'start_date' => $request->start_date,
-            'end_date' => $request->end_date,
+            'start' => $request->start,
+            'end' => $request->end,
         ];
 
         $task = Task::insert($insertArray);
@@ -60,8 +60,8 @@ class CalendarController extends Controller
         $where = ['id' => $request->id];
         $updateArray = [
             'name' => $request->name,
-            'start_date' => $request->start_date,
-            'end_date' => $request->end_date,
+            'start' => $request->start,
+            'end' => $request->end,
         ];
         $task = Task::where($where)->update($updateArray);
 

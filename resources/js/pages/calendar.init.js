@@ -28,7 +28,7 @@ File: Calendar init js
     CalendarApp.prototype.onEventClick =  function (info) {
         this.$formEvent[0].reset();
         this.$formEvent.removeClass("was-validated");
-        
+
         this.$newEventData = null;
         this.$btnDeleteEvent.show();
         this.$modalTitle.text('Edit Event');
@@ -44,7 +44,7 @@ File: Calendar init js
     CalendarApp.prototype.onSelect = function (info) {
         this.$formEvent[0].reset();
         this.$formEvent.removeClass("was-validated");
-        
+
         this.$selectedEvent = null;
         this.$newEventData = info;
         this.$btnDeleteEvent.hide();
@@ -55,10 +55,10 @@ File: Calendar init js
         });
         this.$calendarObj.unselect();
     },
-    
+
     /* Initializing */
     CalendarApp.prototype.init = function() {
-        
+
         /*  Initialize the calendar  */
         var today = new Date($.now());
 
@@ -107,7 +107,7 @@ File: Calendar init js
             plugins: [ 'bootstrap', 'interaction', 'dayGrid', 'timeGrid', 'list' ],
             slotDuration: '00:15:00', /* If we want to split day time each 15minutes */
             minTime: '08:00:00',
-            maxTime: '19:00:00',  
+            maxTime: '19:00:00',
             themeSystem: 'bootstrap',
             bootstrapFontAwesome: false,
             buttonText: {
@@ -119,9 +119,9 @@ File: Calendar init js
                 prev: 'Prev',
                 next: 'Next'
             },
-            defaultView: 'dayGridMonth',  
-            handleWindowResize: true,   
-            height: $(window).height() - 200,   
+            defaultView: 'dayGridMonth',
+            handleWindowResize: true,
+            height: $(window).height() - 200,
             header: {
                 left: 'prev,next today',
                 center: 'title',
@@ -181,7 +181,7 @@ File: Calendar init js
 
    //init CalendarApp
     $.CalendarApp = new CalendarApp, $.CalendarApp.Constructor = CalendarApp
-    
+
 }(window.jQuery),
 
 //initializing CalendarApp

@@ -78,6 +78,7 @@
                             {{-- end col --}}
 
                             <div class="col-lg-9">
+                                <div id="response"></div>
                                 <div id="calendar"></div>
                             </div>
                             {{-- end col --}}
@@ -162,25 +163,11 @@
     <script src="{{ asset('assets/js/pages/calendar.init.js') }}"></script>
 
 
-    {{-- <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'>
-    </script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js'></script>
-    --}}
 
-    {{-- <script type="text/javascript">
+    <script type="text/javascript">
         $(document).ready(function() {
-            $('#calendar').fullCalendar({
-                // events: [
-                //     @foreach ($tasks as $task)
-                //     {
-                //         title: '{{ $task->name }}',
-                //         start: '{{ $task->from_date }}',
-                //         // url: "{{ route('task.edit', $task->id) }}",
-                //     }
-                //     @endforeach
-                // ],
-            });
+            //
         });
 
-    </script> --}}
+    </script>
 @endsection
