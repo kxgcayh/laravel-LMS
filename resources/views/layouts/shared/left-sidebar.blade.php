@@ -44,7 +44,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('calendars') }}">
+                    <a href="{{ route('calendars.index') }}">
                         <i data-feather="calendar"></i>
                         <span> Calendar </span>
                     </a>
