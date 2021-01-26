@@ -12,31 +12,28 @@ use Illuminate\Support\Facades\Auth;
 class TaskController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Method index.
      */
     public function index()
     {
-        if (request()->ajax()) {
-            $start = (!empty($_GET['start_date'])) ? ($_GET['start_date']) : ('');
-            $end = (!empty($_GET['end_date'])) ? ($_GET('end_date')) : ('');
+        $start = (!empty($_GET['start_date'])) ? ($_GET['start_date']) : ('');
+        $end = (!empty($_GET['end_date'])) ? ($_GET('end_date')) : ('');
 
-            $data = Task::whereDate('start_date', '>=', $start)
-                ->whereDate('end_date', '<=', $end)
-                ->get(['id', 'name', 'description', 'start_date', 'end_date'])
-            ;
+        $data = Task::whereDate('start_date', '>=', $start)
+            ->whereDate('end_date', '<=', $end)
+            ->get(['id', 'name', 'description', 'start_date', 'end_date'])
+        ;
 
-            return response()->json($data);
-        }
+        $model = Task::all();
 
+        return response()->json($model);
         // return view('contents.calendar.index');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Method store.
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request [Create new Task Data]
      */
     public function store(Request $request)
     {

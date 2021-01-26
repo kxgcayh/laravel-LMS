@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\TaskController;
@@ -25,6 +24,6 @@ Auth::routes();
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/calendars', [PagesController::class, 'calendars'])->name('calendars');
-    Route::get('/tasks', [PagesController::class, 'tasks'])->name('tasks');
+    Route::get('/tasks', [TaskController::class, 'index'])->name('tasks');
     Route::get('/classes', [PagesController::class, 'classes'])->name('classes');
 });
