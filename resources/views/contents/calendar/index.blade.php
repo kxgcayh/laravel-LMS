@@ -1,16 +1,16 @@
 @extends('layouts.detached', ['title' => 'Calendar'])
 
 @section('css')
-    <!-- Plugins css -->
+    {{-- Plugins css --}}
     <link href="{{ asset('assets/libs/fullcalendar-list/fullcalendar-list.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
 
-    <!-- Start Content-->
+    {{-- Start Content --}}
     <div class="container-fluid">
 
-        <!-- start page title -->
+        {{-- start page title --}}
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box">
@@ -25,7 +25,7 @@
                 </div>
             </div>
         </div>
-        <!-- end page title -->
+        {{-- end page title --}}
 
         <div class="row">
             <div class="col-12">
@@ -74,17 +74,22 @@
                                     </ul>
                                 </div>
 
-                            </div> <!-- end col-->
+                            </div>
+                            {{-- end col --}}
 
                             <div class="col-lg-9">
                                 <div id="calendar"></div>
-                            </div> <!-- end col -->
+                            </div>
+                            {{-- end col --}}
 
-                        </div> <!-- end row -->
-                    </div> <!-- end card body-->
-                </div> <!-- end card -->
+                        </div>
+                        {{-- end row --}}
+                    </div>
+                    {{-- end card body --}}
+                </div>
+                {{-- end card --}}
 
-                <!-- Add New Event MODAL -->
+                {{-- Add New Event MODAL --}}
                 <div class="modal fade" id="event-modal" tabindex="-1">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -132,23 +137,50 @@
                                     </div>
                                 </form>
                             </div>
-                        </div> <!-- end modal-content-->
-                    </div> <!-- end modal dialog-->
+                        </div>
+                        {{-- end modal-content --}}
+                    </div>
+                    {{-- end modal dialog --}}
                 </div>
-                <!-- end modal-->
+                {{-- end modal --}}
             </div>
-            <!-- end col-12 -->
-        </div> <!-- end row -->
+            {{-- end col-12 --}}
+        </div>
+        {{-- end row --}}
 
-    </div> <!-- container -->
+    </div>
+    {{-- container --}}
 
 @endsection
 
 @section('script')
-    <!-- Plugins js-->
+    {{-- Plugins js --}}
     <script src="{{ asset('assets/libs/fullcalendar-list/fullcalendar-list.min.js') }}"></script>
     <script src="{{ asset('assets/libs/moment/moment.min.js') }}"></script>
 
-    <!-- Page js-->
+    {{-- Page js --}}
     <script src="{{ asset('assets/js/pages/calendar.init.js') }}"></script>
+
+
+    {{-- <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'>
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js'></script>
+    --}}
+
+    {{-- <script type="text/javascript">
+        $(document).ready(function() {
+            $('#calendar').fullCalendar({
+                // events: [
+                //     @foreach ($tasks as $task)
+                //     {
+                //         title: '{{ $task->name }}',
+                //         start: '{{ $task->from_date }}',
+                //         // url: "{{ route('task.edit', $task->id) }}",
+                //     }
+                //     @endforeach
+                // ],
+            });
+        });
+
+    </script> --}}
 @endsection

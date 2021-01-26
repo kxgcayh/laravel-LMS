@@ -33,4 +33,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/update', [CalendarController::class, 'update'])->name('update');
         Route::post('/delete', [CalendarController::class, 'destroy'])->name('destroy');
     });
+
+    Route::post('/task/edit/{id}', [TaskController::class, 'edit'])->name('task.edit');
 });

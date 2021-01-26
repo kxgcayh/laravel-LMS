@@ -14,6 +14,7 @@ class CalendarController extends Controller
      */
     public function index()
     {
+        $tasks = Task::all();
         if (request()->ajax()) {
             $start = (!empty($_GET['start_date'])) ? ($_GET['start_date']) : ('');
             $end = (!empty($_GET['end_date'])) ? ($_GET('end_date')) : ('');
@@ -26,7 +27,7 @@ class CalendarController extends Controller
             return response()->json($data);
         }
 
-        return view('contents.calendar.index');
+        return view('contents.calendar.index', compact('tasks'));
     }
 
     /**

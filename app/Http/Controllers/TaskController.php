@@ -8,4 +8,9 @@ class TaskController extends Controller
     {
         return view('contents.task.index');
     }
+
+    public function edit($id)
+    {
+        // .
+    }
 }
