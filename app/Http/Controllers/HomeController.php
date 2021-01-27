@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Classes;
+use App\Models\Classroom\Classes;
 
 class HomeController extends Controller
 {

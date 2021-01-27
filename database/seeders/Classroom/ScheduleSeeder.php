@@ -6,7 +6,7 @@ use App\Models\Classroom\Schedule;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
 
-class ClassScheduleSeeder extends Seeder
+class ScheduleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
