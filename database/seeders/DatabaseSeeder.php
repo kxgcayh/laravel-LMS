@@ -8,8 +8,6 @@ class DatabaseSeeder extends Seeder
 {
     /**
      * Seed the application's database.
-     *
-     * @return void
      */
     public function run()
     {
@@ -17,8 +15,9 @@ class DatabaseSeeder extends Seeder
             RolePermissionSeeder::class,
             UserSeeder::class,
             TaskSeeder::class,
-            ClassesSeedeer::class,
-            UserClassesSeeder::class
+            Classroom\ClassesSeedeer::class,
+            Classroom\UserClassesSeeder::class,
+            Classroom\ClassScheduleSeeder::class,
         ]);
     }
 }

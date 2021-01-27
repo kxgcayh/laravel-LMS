@@ -1,17 +1,14 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Classroom;
 
-use App\Models\Classes;
-use App\Models\User;
+use App\Models\Classroom\Classes;
 use Illuminate\Database\Seeder;
 
 class UserClassesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
     public function run()
     {

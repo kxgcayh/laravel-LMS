@@ -8,8 +8,6 @@ class CreateClassesTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -18,14 +16,14 @@ class CreateClassesTable extends Migration
             $table->unsignedBigInteger('instructor_id')->nullable();
             $table->foreign('instructor_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('name');
+            $table->date('start_date');
+            $table->date('end_date')->nullable();
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {

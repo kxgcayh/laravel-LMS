@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Classroom;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +9,7 @@ class UserClasses extends Model
 {
     use HasFactory;
 
-    protected $table = 'user_has_classes';
-
     public $timestamps = false;
+
+    protected $table = 'user_has_classes';
 }
