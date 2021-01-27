@@ -21,7 +21,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $models = Classes::with('instructors')->get();
+        $roles = auth()->user()->role('teacher')->get('id');
+        // dd($roles);
+
+        $models = Classes::with('students', 'instructors')->get();
 
         return view('home', compact('models'));
     }

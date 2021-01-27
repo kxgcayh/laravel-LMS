@@ -13,7 +13,7 @@ class Classes extends Model
     protected $table = 'classes';
 
     protected $fillable = [
-        'instructor_id',
+        'user_id',
         'name',
         'start_date',
         'end_date',

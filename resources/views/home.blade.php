@@ -40,7 +40,7 @@
                         {{-- end dropdown --}}
                         {{-- Title --}}
                         <h4 class="mt-0"><a href="#" class="text-dark">
-                                {{ $class->name }}
+                                {{ $class->name }} {{ $class->user_id }}
                             </a></h4>
                         <p class="text-muted text-uppercase"><i class="mdi mdi-account-circle"></i>
                             <small>
@@ -65,35 +65,13 @@
                         </p>
                         {{-- Team --}}
                         <div class="avatar-group mb-3">
-                            <a href="javascript: void(0);" class="avatar-group-item" data-toggle="tooltip"
-                                data-placement="top" title="" data-original-title="Mat Helme">
-                                <img src="{{ asset('assets/images/users/user-1.jpg') }}" class="rounded-circle avatar-sm"
-                                    alt="friend" />
-                            </a>
-
-                            <a href="javascript: void(0);" class="avatar-group-item" data-toggle="tooltip"
-                                data-placement="top" title="" data-original-title="Michael Zenaty">
-                                <img src="{{ asset('assets/images/users/user-2.jpg') }}" class="rounded-circle avatar-sm"
-                                    alt="friend" />
-                            </a>
-
-                            <a href="javascript: void(0);" class="avatar-group-item" data-toggle="tooltip"
-                                data-placement="top" title="" data-original-title="James Anderson">
-                                <img src="{{ asset('assets/images/users/user-3.jpg') }}" class="rounded-circle avatar-sm"
-                                    alt="friend" />
-                            </a>
-
-                            <a href="javascript: void(0);" class="avatar-group-item" data-toggle="tooltip"
-                                data-placement="top" title="" data-original-title="Mat Helme">
-                                <img src="{{ asset('assets/images/users/user-4.jpg') }}" class="rounded-circle avatar-sm"
-                                    alt="friend" />
-                            </a>
-
-                            <a href="javascript: void(0);" class="avatar-group-item" data-toggle="tooltip"
-                                data-placement="top" title="" data-original-title="Username">
-                                <img src="{{ asset('assets/images/users/user-5.jpg') }}" class="rounded-circle avatar-sm"
-                                    alt="friend" />
-                            </a>
+                            @foreach ($class->students as $student)
+                                <a href="javascript: void(0);" class="avatar-group-item" data-toggle="tooltip"
+                                    data-placement="top" title="" data-original-title="{{ $student->name }}">
+                                    <img src="{{ asset('assets/images/users/user-1.jpg') }}"
+                                        class="rounded-circle avatar-sm" alt="friend" />
+                                </a>
+                            @endforeach
                         </div>
                     </div>
                     {{-- end card box --}}

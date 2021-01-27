@@ -35,6 +35,7 @@
                         <div class="card">
                             <div class="card-body">
                                 {{-- cta --}}
+                                @role('teacher|super-admin')
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <a href="#" class="btn btn-primary waves-effect waves-light"><i
@@ -42,7 +43,6 @@
                                     </div>
                                     <div class="col-sm-9">
                                         <div class="float-sm-right mt-3 mt-sm-0">
-
                                             <div class="d-inline-block mb-3 mb-sm-0 mr-sm-2">
                                                 <form class="search-bar form-inline">
                                                     <div class="position-relative">
@@ -65,6 +65,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endrole
 
                                 <div class="row mt-4" data-plugin="dragula"
                                     data-containers='["today-list", "upcoming-list"]'>
