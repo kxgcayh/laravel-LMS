@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
             TaskSeeder::class,
             Classroom\ClassesSeedeer::class,
             Classroom\UserClassesSeeder::class,
-            Classroom\ClassScheduleSeeder::class,
+            Classroom\ScheduleSeeder::class,
         ]);
     }
 }
