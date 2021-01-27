@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\Classroom\ClassController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\TaskController;
@@ -33,6 +34,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/update', [CalendarController::class, 'update'])->name('update');
         Route::post('/delete', [CalendarController::class, 'destroy'])->name('destroy');
     });
+
+    Route::get('/myClass', [ClassController::class, 'getMyClass'])->name('data.class');
 
     Route::post('/task/edit/{id}', [TaskController::class, 'edit'])->name('task.edit');
 });
