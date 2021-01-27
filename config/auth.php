@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Authentication Defaults
@@ -42,9 +41,9 @@ return [
         ],
 
         'api' => [
-            'driver' => 'passport',
+            'driver' => 'token',
             'provider' => 'users',
-            // 'hash' => false,
+            'hash' => false,
         ],
     ],
 
@@ -113,5 +112,4 @@ return [
     */
 
     'password_timeout' => 10800,
-
 ];
