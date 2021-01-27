@@ -18,11 +18,12 @@ class Task extends Model
     ];
 
     protected $casts = [
-        'datetime' => 'date:Y-m-d H:i:s',
+        'start' => 'datetime',
+        'end' => 'datetime',
     ];
 
-    public function created_by()
+    public function user()
     {
-        return $this->belongsTo(User::class, 'created_by');
+        return $this->belongsTo(User::class, 'created_by', 'id');
     }
 }

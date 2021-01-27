@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Classes;
+
 class HomeController extends Controller
 {
     /**
@@ -19,6 +21,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $models = Classes::with('instructors')->get();
+
+        return view('home', compact('models'));
     }
 }
