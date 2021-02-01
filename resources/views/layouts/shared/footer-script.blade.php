@@ -11,24 +11,5 @@
         }
     });
 
-    $(document).ready(function() {
-        $.ajax({
-            url: "{{ route('data.class') }}",
-            method: 'GET',
-            dataType: 'json',
-            success: function(data) {
-
-                for (let i = 0; i < data.length; i++) {
-                    let mylist = `
-                        <li>
-                            <a href="#">${data[i].name}</a>
-                        </li>`;
-                    // console.log(data);
-                    $('#my-class-list').append(mylist);
-                }
-            }
-        })
-    });
-
 </script>
 @yield('script-bottom')

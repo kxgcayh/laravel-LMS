@@ -1,8 +1,9 @@
-@extends('layouts.detached', ['title' => 'Calendar'])
+@extends('layouts.master', ['title' => 'Calendar'])
 
 @section('css')
     {{-- Plugins css --}}
-    <link href="{{ asset('assets/libs/fullcalendar-list/fullcalendar-list.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/libs/fullcalendar-list/fullcalendar-list.min.css') }}" rel="stylesheet"
+        type="text/css" />
 @endsection
 
 @section('content')

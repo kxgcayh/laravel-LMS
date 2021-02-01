@@ -1,4 +1,4 @@
-@extends('layouts.detached', ['title' => 'Dashboard'])
+@extends('layouts.master', ['title' => 'Dashboard'])
 
 @section('css')
     {{-- Plugins css --}}
@@ -39,7 +39,7 @@
                         </div>
                         {{-- end dropdown --}}
                         {{-- Title --}}
-                        <h4 class="mt-0"><a href="#" class="text-dark">
+                        <h4 class="mt-0"><a href="{{ route('class.show', $class->id) }}" class="text-dark">
                                 {{ $class->name }} {{ $class->user_id }}
                             </a></h4>
                         <p class="text-muted text-uppercase"><i class="mdi mdi-account-circle"></i>
@@ -81,8 +81,4 @@
 
     </div>
     {{-- container --}}
-@endsection
-
-@section('script')
-    {{-- --}}
 @endsection

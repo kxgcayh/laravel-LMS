@@ -26,16 +26,20 @@ Auth::routes();
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/tasks', [TaskController::class, 'index'])->name('tasks');
-    Route::get('/classes', [PagesController::class, 'classes'])->name('classes');
-
-    Route::group(['prefix' => 'calendars', 'as' => 'calendars.'], function () {
-        Route::get('/', [CalendarController::class, 'index'])->name('index');
+    // ? Calendars
+    Route::get('/calendars', [CalendarController::class, 'index'])->name('calendars');
+    Route::group(['prefix' => 'calendar', 'as' => 'calendars.'], function () {
         Route::post('/create', [CalendarController::class, 'store'])->name('store');
         Route::post('/update', [CalendarController::class, 'update'])->name('update');
         Route::post('/delete', [CalendarController::class, 'destroy'])->name('destroy');
     });
 
+    // ? Classes
     Route::get('/myClass', [ClassController::class, 'getMyClass'])->name('data.class');
+    Route::get('/classes', [PagesController::class, 'classes'])->name('classes');
+    Route::group(['prefix' => 'class', 'as' => 'class.'], function () {
+        Route::get('detail-class/{id}', [ClassController::class, 'show'])->name('show');
+    });
 
     Route::post('/task/edit/{id}', [TaskController::class, 'edit'])->name('task.edit');
 });

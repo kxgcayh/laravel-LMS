@@ -44,16 +44,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // User has many task
     public function tasks()
     {
         return $this->hasMany(Task::class);
     }
 
+    // Instructor has many class
     public function instructorClass()
     {
         return $this->hasMany(Classes::class);
     }
 
+    // Student has many class
     public function studentClass()
     {
         return $this->belongsToMany(Classes::class, 'user_has_classes', 'user_id', 'class_id');

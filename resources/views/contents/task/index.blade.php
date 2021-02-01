@@ -1,4 +1,4 @@
-@extends('layouts.detached', ['title' => 'Tasks Listing'])
+@extends('layouts.master', ['title' => 'Tasks Listing'])
 
 @section('css')
     {{-- Plugins css --}}
@@ -75,8 +75,7 @@
 
                                         {{-- Upcoming Tasks --}}
                                         @upcoming
-                                        {{-- End of Upcoming Tasks
-                                        --}}
+                                        {{-- End of Upcoming Tasks --}}
                                     </div>
                                     {{-- end col --}}
                                 </div>

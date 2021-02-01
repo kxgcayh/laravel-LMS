@@ -7,10 +7,11 @@ use App\Models\Classroom\Classes;
 
 class ClassController extends Controller
 {
-    public function getMyClass()
+    public function show($id)
     {
-        $models = Classes::with('instructors')->get();
+        $class = Classes::with('students')->findOrFail($id);
+        // dd($class->students->count());
 
-        return response()->json($models);
+        return view('contents.classes.show', compact('class'));
     }
 }

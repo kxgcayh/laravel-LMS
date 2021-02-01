@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Classroom\Classes;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -24,6 +26,9 @@ class HomeController extends Controller
         $roles = auth()->user()->role('teacher')->get('id');
         // dd($roles);
 
+        $user = Auth::id();
+        $instructor = User::with('studentClass')->find($user);
+        // dd($instructor->name);
         $models = Classes::with('students', 'instructors')->get();
 
         return view('home', compact('models'));

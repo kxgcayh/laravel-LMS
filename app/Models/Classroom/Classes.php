@@ -24,6 +24,7 @@ class Classes extends Model
         return $this->belongsToMany(User::class, 'user_has_classes', 'class_id', 'user_id');
     }
 
+    // Class belongs to Instructors
     public function instructors()
     {
         return $this->belongsTo(User::class, 'user_id');

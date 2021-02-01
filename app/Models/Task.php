@@ -22,6 +22,7 @@ class Task extends Model
         'end' => 'datetime',
     ];
 
+    // Task belongs to user
     public function user()
     {
         return $this->belongsTo(User::class, 'created_by', 'id');
