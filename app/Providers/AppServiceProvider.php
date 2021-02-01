@@ -27,11 +27,14 @@ class AppServiceProvider extends ServiceProvider
         Blade::include('includes.tasks.upcoming', 'upcoming');
         Blade::include('includes.tasks.today', 'todayList');
 
-        $models = Classes::whereHas('instructors', function ($q) {
-            $q->where('user_id', '=', Auth::id());
-        })->get();
+        View::composer('*', function () {
+            if (Auth::check()) {
+                $classList = Classes::whereHas('instructors', function ($q) {
+                    $q->where('user_id', '=', Auth::id());
+                })->get();
 
-        // dd(Auth::id());
-        View::share('classes_list', $models);
+                View::share('classes_list', $classList);
+            }
+        });
     }
 }
