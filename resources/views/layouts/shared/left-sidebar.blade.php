@@ -60,16 +60,18 @@
                 <li>
                     <a href="#class-sidebar" data-toggle="collapse">
                         <i class=" fas fa-layer-group"></i>
-                        <span class="badge badge-success badge-pill float-right">{{ $classes_list->count() }}</span>
+                        <span class="badge badge-success badge-pill float-right" id="class-count">
+                            {{--  --}}
+                        </span>
                         <span> Class List </span>
                     </a>
                     <div class="collapse" id="class-sidebar">
                         <ul class="nav-second-level" id="my-class-list">
-                            @foreach ($classes_list as $classList)
+                            {{-- @foreach ($classes_list as $classList)
                                 <li>
                                     <a href="{{ route('class.show', $classList->id) }}">{{ $classList->name }}</a>
                                 </li>
-                            @endforeach
+                            @endforeach --}}
                         </ul>
                     </div>
                 </li>

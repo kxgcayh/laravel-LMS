@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Classroom\Classes;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -23,13 +22,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $roles = auth()->user()->role('teacher')->get('id');
-        // dd($roles);
-
-        $user = Auth::id();
-        $instructor = User::with('studentClass')->find($user);
-        // dd($instructor->name);
-        $models = Classes::with('students', 'instructors')->get();
+        // ? Menampilkan kelas berdasarkan user(instructor) yang login
+        $models = Classes::whereHas('instructors', function ($q) {
+            $q->where('user_id', '=', Auth::id());
+        })->get();
+        // dd($models);
 
         return view('home', compact('models'));
     }
