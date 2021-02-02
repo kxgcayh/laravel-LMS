@@ -145,11 +145,19 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($students as $student)
-                                        <tr>
-                                            <td>{{ $student->id }}</td>
-                                            <td>{{ $student->name }}</td>
-                                            <td>{{ $student->email }}</td>
-                                        </tr>
+                                        @if (empty($student))
+                                            <tr>
+                                                <td colspan="3" class="text-center">
+                                                    {{ __('Data is empty') }}
+                                                </td>
+                                            </tr>
+                                        @else
+                                            <tr>
+                                                <td>{{ $student->id }}</td>
+                                                <td>{{ $student->name }}</td>
+                                                <td>{{ $student->email }}</td>
+                                            </tr>
+                                        @endif
                                     @endforeach
                                 </tbody>
                             </table>

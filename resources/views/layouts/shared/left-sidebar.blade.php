@@ -57,24 +57,34 @@
                         <span> My Tasks </span>
                     </a>
                 </li>
-                <li>
-                    <a href="#class-sidebar" data-toggle="collapse">
-                        <i class=" fas fa-layer-group"></i>
-                        <span class="badge badge-success badge-pill float-right" id="class-count">
-                            {{ $classes_list->count() }}
-                        </span>
-                        <span> Class List </span>
-                    </a>
-                    <div class="collapse" id="class-sidebar">
-                        <ul class="nav-second-level" id="my-class-list">
-                            @foreach ($classes_list as $classList)
-                                <li>
-                                    <a href="{{ route('class.show', $classList->id) }}">{{ $classList->name }}</a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </li>
+                @if ($classes_list->count() == 0)
+                    <li>
+                        <a href="#">
+                            <i class="mdi mdi-google-circles-group"></i>
+                            <span> Join Class </span>
+                        </a>
+                    </li>
+                @else
+                    <li>
+                        <a href="#class-sidebar" data-toggle="collapse">
+                            <i class="mdi mdi-google-classroom"></i>
+                            <span class="badge badge-success badge-pill float-right" id="class-count">
+                                {{ $classes_list->count() }}
+                            </span>
+                            <span> Class List </span>
+                        </a>
+                        <div class="collapse" id="class-sidebar">
+                            <ul class="nav-second-level" id="my-class-list">
+                                @foreach ($classes_list as $classList)
+                                    <li>
+                                        <a
+                                            href="{{ route('class.show', $classList->id) }}">{{ $classList->name }}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </li>
+                @endif
                 <hr>
                 <li class="menu-title">More</li>
                 <li>

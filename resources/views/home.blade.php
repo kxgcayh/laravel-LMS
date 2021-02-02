@@ -43,7 +43,8 @@
                                 {{ $class->name }} {{ $class->id }}
                             </a></h4>
                         <p class="text-muted text-uppercase"><i class="mdi mdi-account-circle"></i>
-                            <small>
+                            <small data-toggle="tooltip" data-placement="bottom" title="Instructor"
+                                data-original-title="Instructor">
                                 {{ $class->instructors->name }}
                             </small>
                         </p>
@@ -52,24 +53,12 @@
                             With supporting text below as a natural lead-in to additional contenposuere erat a ante...
                             <a href="javascript:void(0);" class="font-weight-bold text-muted">view more</a>
                         </p>
-                        {{-- Task info --}}
-                        <p class="mb-1">
-                            <span class="pr-2 text-nowrap mb-2 d-inline-block">
-                                <i class="mdi mdi-format-list-bulleted-type text-muted"></i>
-                                <b>
-                                    {{-- {{ $tasks->count() }} --}}
-                                </b> Tasks
-                            </span>
-                            <span class="text-nowrap mb-2 d-inline-block">
-                                <i class="mdi mdi-comment-multiple-outline text-muted"></i>
-                                <b>214</b> Comments
-                            </span>
-                        </p>
                         {{-- Team --}}
                         <div class="avatar-group mb-3">
                             @foreach ($class->manyStudent as $student)
                                 <a href="javascript: void(0);" class="avatar-group-item" data-toggle="tooltip"
-                                    data-placement="top" title="" data-original-title="{{ $student->name }}">
+                                    data-placement="top" title="{{ $student->name }}"
+                                    data-original-title="{{ $student->name }}">
                                     <img src="{{ asset('assets/images/users/user-1.jpg') }}"
                                         class="rounded-circle avatar-sm" alt="friend" />
                                 </a>
