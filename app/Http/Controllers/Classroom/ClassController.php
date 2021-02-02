@@ -4,24 +4,31 @@ namespace App\Http\Controllers\Classroom;
 
 use App\Http\Controllers\Controller;
 use App\Models\Classroom\Classes;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Task;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class ClassController extends Controller
 {
-    public function show($id)
+    public function show($id, Request $request)
     {
-        $class = Classes::with('students')->findOrFail($id);
-        // dd($class->students->count());
+        $class = Classes::with('manyStudent', 'manyTask')->findOrFail($id);
+        $students = User::whereHas('manyClass', function ($q) use ($id) { $q->where('class_id', '=', $id); })->get();
+        $tasks = Task::whereHas('manyClass', function ($q) use ($id) { $q->where('class_id', '=', $id); })->get();
+        // foreach ($students as $student) {
+        //     dd($student->name);
+        // }
 
-        return view('contents.classes.show', compact('class'));
-    }
+        if ($request->ajax()) {
+            return DataTables::of($class)
+                ->addIndexColumn()
+                ->addColumn('action', function () {
+                    return '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
+                })->rawColumns(['action'])->make(true)
+            ;
+        }
 
-    public function getMyClass()
-    {
-        $models = Classes::whereHas('instructors', function ($q) {
-            $q->where('user_id', '=', Auth::id());
-        })->get();
-
-        return response()->json($models);
+        return view('contents.classes.show', compact('class', 'students', 'tasks'))->with('studentNo', 'taskNo');
     }
 }

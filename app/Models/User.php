@@ -57,7 +57,7 @@ class User extends Authenticatable
     }
 
     // Student has many class
-    public function studentClass()
+    public function manyClass()
     {
         return $this->belongsToMany(Classes::class, 'user_has_classes', 'user_id', 'class_id');
     }

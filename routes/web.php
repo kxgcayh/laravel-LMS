@@ -35,7 +35,6 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     // ? Classes
-    Route::get('/myClass', [ClassController::class, 'getMyClass'])->name('data.class');
     Route::get('/classes', [PagesController::class, 'classes'])->name('classes');
     Route::group(['prefix' => 'class', 'as' => 'class.'], function () {
         Route::get('detail-class/{id}', [ClassController::class, 'show'])->name('show');

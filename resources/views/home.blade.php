@@ -40,7 +40,7 @@
                         {{-- end dropdown --}}
                         {{-- Title --}}
                         <h4 class="mt-0"><a href="{{ route('class.show', $class->id) }}" class="text-dark">
-                                {{ $class->name }} {{ $class->user_id }}
+                                {{ $class->name }} {{ $class->id }}
                             </a></h4>
                         <p class="text-muted text-uppercase"><i class="mdi mdi-account-circle"></i>
                             <small>
@@ -56,7 +56,9 @@
                         <p class="mb-1">
                             <span class="pr-2 text-nowrap mb-2 d-inline-block">
                                 <i class="mdi mdi-format-list-bulleted-type text-muted"></i>
-                                <b>78</b> Tasks
+                                <b>
+                                    {{-- {{ $tasks->count() }} --}}
+                                </b> Tasks
                             </span>
                             <span class="text-nowrap mb-2 d-inline-block">
                                 <i class="mdi mdi-comment-multiple-outline text-muted"></i>
@@ -65,7 +67,7 @@
                         </p>
                         {{-- Team --}}
                         <div class="avatar-group mb-3">
-                            @foreach ($class->students as $student)
+                            @foreach ($class->manyStudent as $student)
                                 <a href="javascript: void(0);" class="avatar-group-item" data-toggle="tooltip"
                                     data-placement="top" title="" data-original-title="{{ $student->name }}">
                                     <img src="{{ asset('assets/images/users/user-1.jpg') }}"

@@ -18,11 +18,10 @@
                         <label for="todayId-{{ $today->id }}">
                             {{ $today->description }}
                         </label>
-                        {{-- end checkbox
-                        --}}
+                        {{-- end checkbox --}}
                     </div>
                     {{-- end
-                    col--}}
+                    col --}}
                     <div class="col-lg-6">
                         <div class="d-sm-flex justify-content-between">
                             <div>
@@ -37,18 +36,15 @@
                                 </ul>
                             </div>
                         </div>
-                        {{-- end .d-flex
-                        --}}
+                        {{-- end .d-flex --}}
                     </div>
                     {{-- end
-                    col--}}
+                    col --}}
                 </div>
             @endforeach
-            {{-- end task
-            --}}
+            {{-- end task --}}
         </div>
-        {{-- end card-body
-        --}}
+        {{-- end card-body --}}
     </div>
     {{-- end card --}}
 </div>

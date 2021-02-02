@@ -39,7 +39,11 @@
                         </div>
                         <div class="col-6">
                             <div class="text-right">
-                                <h3 class="text-dark mt-1"><span data-plugin="counterup">942</span></h3>
+                                <h3 class="text-dark mt-1">
+                                    <span data-plugin="counterup">
+                                        {{ $class->manyTask->count() }}
+                                    </span>
+                                </h3>
                                 <p class="text-muted mb-1 text-truncate">Total Tasks</p>
                             </div>
                         </div>
@@ -60,7 +64,15 @@
                         </div>
                         <div class="col-6">
                             <div class="text-right">
-                                <h3 class="text-dark mt-1"><span data-plugin="counterup">328</span></h3>
+                                <h3 class="text-dark mt-1">
+                                    @if ($class->manyTask->count() != 0)
+                                        Congratulations
+                                    @else
+                                        <span data-plugin="counterup">
+                                            $class->manyTask->count()
+                                        </span>
+                                    @endif
+                                </h3>
                                 <p class="text-muted mb-1 text-truncate">Total Tasks Completed</p>
                             </div>
                         </div>
@@ -76,13 +88,15 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="avatar-lg rounded-circle bg-light">
-                                <i class="fe-users font-26 avatar-title text-info"></i>
+                                <a href="http://">
+                                    <i class="fe-users font-26 avatar-title text-info"></i>
+                                </a>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="text-right">
                                 <h3 class="text-dark mt-1"><span data-plugin="counterup">
-                                        {{ $class->students->count() }}
+                                        {{ $class->manyStudent->count() }}
                                     </span></h3>
                                 <p class="text-muted mb-1 text-truncate">Total Students</p>
                             </div>
@@ -114,6 +128,64 @@
                 {{-- end widget-rounded-circle --}}
             </div>
             {{-- end col --}}
+
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="header-title">Student List</h4>
+                        {{-- Datatable --}}
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($students as $student)
+                                        <tr>
+                                            <td>{{ $student->id }}</td>
+                                            <td>{{ $student->name }}</td>
+                                            <td>{{ $student->email }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="header-title">Task List</h4>
+                        {{-- Datatable --}}
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($tasks as $task)
+                                        <tr>
+                                            <td>{{ $task->id }}</td>
+                                            <td>{{ $task->name }}</td>
+                                            <td>{{ $task->description }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     {{-- container --}}
@@ -121,9 +193,12 @@
 @section('script')
     {{-- Plugins js --}}
     <script src="{{ asset('assets/libs/dragula/dragula.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/quill/quill.min.js') }}"></script>
 
     {{-- Page js --}}
     <script src="{{ asset('assets/js/pages/dragula.init.js') }}"></script>
-    <script src="{{ asset('assets/js/pages/task.init.js') }}"></script>
+
+    <script>
+        //
+
+    </script>
 @endsection

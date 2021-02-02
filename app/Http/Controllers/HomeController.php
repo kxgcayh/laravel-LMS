@@ -26,7 +26,6 @@ class HomeController extends Controller
         $models = Classes::whereHas('instructors', function ($q) {
             $q->where('user_id', '=', Auth::id());
         })->get();
-        // dd($models);
 
         return view('home', compact('models'));
     }

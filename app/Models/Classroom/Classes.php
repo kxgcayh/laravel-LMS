@@ -2,6 +2,7 @@
 
 namespace App\Models\Classroom;
 
+use App\Models\Task;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -19,9 +20,14 @@ class Classes extends Model
         'end_date',
     ];
 
-    public function students()
+    public function manyStudent()
     {
         return $this->belongsToMany(User::class, 'user_has_classes', 'class_id', 'user_id');
+    }
+
+    public function manyTask()
+    {
+        return $this->belongsToMany(Task::class, 'classes_has_tasks', 'class_id', 'task_id');
     }
 
     // Class belongs to Instructors

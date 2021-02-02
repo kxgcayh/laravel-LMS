@@ -54,7 +54,7 @@
                 <li>
                     <a href="{{ route('tasks') }}">
                         <i class="mdi mdi-clipboard-check-outline"></i>
-                        <span> Tasks </span>
+                        <span> My Tasks </span>
                     </a>
                 </li>
                 <li>

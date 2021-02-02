@@ -100,9 +100,7 @@
 @section('script')
     {{-- Plugins js --}}
     <script src="{{ asset('assets/libs/dragula/dragula.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/quill/quill.min.js') }}"></script>
 
     {{-- Page js --}}
     <script src="{{ asset('assets/js/pages/dragula.init.js') }}"></script>
-    <script src="{{ asset('assets/js/pages/task.init.js') }}"></script>
 @endsection
