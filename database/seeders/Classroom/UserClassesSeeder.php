@@ -15,6 +15,6 @@ class UserClassesSeeder extends Seeder
         $class = Classes::find(1);
         $studentIds = [2, 3];
 
-        $class->students()->attach($studentIds);
+        $class->manyStudent()->attach($studentIds);
     }
 }
